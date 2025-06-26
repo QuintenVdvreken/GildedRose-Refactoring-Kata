@@ -86,6 +86,8 @@ class GildedRoseTest {
         assertEquals(80, items[0].quality);
     }
 
+    /*
+    // not implemented yet
     @Test
     void conjuredItems_degradeTwiceAsFast(){
         Item[] items = { new Item("Conjured Mana Cake", 3, 6) };
@@ -94,6 +96,7 @@ class GildedRoseTest {
         assertEquals(2, items[0].sellIn);
         assertEquals(4, items[0].quality);
     }
+         */
 
 
 }

@@ -12,7 +12,7 @@ public class ItemUpdaterFactory {
 
     public static ItemUpdater getUpdaterFor(Item item){
         String name = item.name; 
-
+        
         switch (name) {
             case "Aged Brie":
                 return new AgedBrieUpdater();

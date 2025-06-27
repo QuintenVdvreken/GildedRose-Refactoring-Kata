@@ -1,20 +1,21 @@
 package com.gildedrose.updateQualityStrategy;
 
 import com.gildedrose.Item;
+import com.gildedrose.helperFunctions.ItemRules;
 
 public class DefaultItemUpdater implements ItemUpdater {
 
     @Override
     public void update(Item item){
-        if (item.quality > 0) {
-            item.quality--;
-        }
-
         item.sellIn--; 
 
-        if (item.sellIn < 0 && item.quality > 0) { 
-            item.quality--; 
-       }
+        if (ItemRules.hasQuality(item)) {
+            item.quality--;
+          
+            if (ItemRules.isExpired(item)) { 
+                item.quality--; 
+           }
+        }
     }
 }
  

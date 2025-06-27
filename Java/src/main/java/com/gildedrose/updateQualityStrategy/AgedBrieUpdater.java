@@ -1,18 +1,19 @@
 package com.gildedrose.updateQualityStrategy;
 
 import com.gildedrose.Item;
+import com.gildedrose.helperFunctions.ItemRules;
 
 public class AgedBrieUpdater implements ItemUpdater{
     
     @Override
     public void update(Item item){
-        if (item.quality < 50) {
+        item.sellIn --; 
+
+        if (ItemRules.canIncreaseQuality(item)) {
             item.quality++;
         }
 
-        item.sellIn --; 
-
-        if (item.sellIn < 0 && item.quality < 50) {
+        if (ItemRules.isExpired(item) && ItemRules.hasQuality(item)) {
             item.quality++;
         }
     }

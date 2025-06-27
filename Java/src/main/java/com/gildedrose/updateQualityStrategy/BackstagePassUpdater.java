@@ -1,27 +1,31 @@
 package com.gildedrose.updateQualityStrategy;
 
 import com.gildedrose.Item;
+import com.gildedrose.helperFunctions.ItemRules;
 
 public class BackstagePassUpdater  implements ItemUpdater{
+
+    private static final int TEN_DAYS = 10;
+    private static final int FIVE_DAYS = 5;
     
     @Override
     public void update(Item item){
-        if (item.quality < 50) {
-            item.quality++; 
-        
-            if(item.sellIn<= 10 && item.quality < 50){
-                item.quality++;
-            }
-
-            if(item.sellIn<=5 && item.quality < 50){
-                item.quality++;
-            }
-        }
-
         item.sellIn--; 
 
-        if(item.sellIn < 0) {
-            item.quality = 0; 
+        if (ItemRules.isExpired(item)) {
+            item.quality = 0;
+        } else {
+            if (ItemRules.canIncreaseQuality(item)) {
+                item.quality++;
+
+                if (ItemRules.isWithinDaysUntilEvent(item, TEN_DAYS)) {
+                    item.quality++;
+                }
+
+                if (ItemRules.isWithinDaysUntilEvent(item, FIVE_DAYS)) {
+                    item.quality++;
+                }
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ class GildedRoseTest {
     void standardItem_degradesTwiceAsFastAfterSellInDate(){
         Item[] items = { new Item("Elixir of the Mongoose", 0, 10)};
         GildedRose main = new GildedRose(items);
-        main.updateQuality();
+        main.updateQuality();   
         main.updateQuality();
         main.updateQuality();
         assertEquals(-3, items[0].sellIn);
@@ -42,6 +42,8 @@ class GildedRoseTest {
         assertEquals(1, items[0].quality);
         assertEquals(1, items[0].sellIn);
     }
+
+    
 
     @Test
     void backstagePasses_increaseInQualityWithOne(){
